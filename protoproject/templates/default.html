@@ -5,9 +5,13 @@
     <meta charset="utf-8">
     <title>Текстовое поле</title>
 </head>
-<form action="{% url 'id_page'%}" method="post">
+<body>
+{% block content %}
+<form action="{% url 'redirect_page' %}" method="post">
     {% csrf_token %}
-   <p><input name='data' value="Введите текст"></p>
+   <p><input name="data" value="Введите текст"></p>
    <p><input type="submit" value="Сохранить"></p>
 </form>
+{% endblock content %}
+</body>
 </html>

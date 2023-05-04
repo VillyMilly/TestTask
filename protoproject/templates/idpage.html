@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Page Id</title>
-</head>
-<form action="{% url 'start_page'%}" method="">
-   <p><input name='data' value={{data}}></p>
-   <p><input type="submit" value="Перейти на главную"></p>
+{% extends 'default.html' %}
+
+{% block content %}
+<form action="{% url 'start_page' %}">
+   <p><input name="data" value="{{idtext}}"></p>
+   <p><input type="submit" value="На главную"></p>
 </form>
-</html>
+{% endblock content %}

@@ -1,21 +1,22 @@
 from django.shortcuts import render, redirect
 from protomodels.models import Data
+from django.views.generic import DetailView
 
 
 def start_page(request):
-    if request.GET.__contains__('id'):
-        id_obj = request.GET['id']
-        if id_obj:
-            print(id)
-            data_obj = Data.objects.get(pk=id_obj).data
-            return render(request, 'idpage.html', {'data': data_obj})
     return render(request, 'default.html')
 
 
-def id_page(request):
-    data = request.POST['data']
+def redirect_page(request):
+    data = request.POST.get('data')
     if data:
-        Data.objects.create(data=data)
+        w = Data.objects.create(data=data)
     else:
         return redirect('start_page')
-    return render(request, 'idpage.html', {'data': data})
+    return redirect('id_page', w.pk)
+
+
+class IdDetail(DetailView):
+    model = Data
+    template_name = 'idpage.html'
+    context_object_name = 'idtext'

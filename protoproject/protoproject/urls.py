@@ -16,11 +16,14 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from protoproject import views
+from protoproject.views import IdDetail
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.start_page, name='start_page'),
-    path("idpage/", views.id_page, name='id_page'),
+    path('<int:pk>', IdDetail.as_view(), name='id_page'),
+    path('redirect/', views.redirect_page, name='redirect_page')
 ]
